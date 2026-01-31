@@ -170,5 +170,6 @@ If you open the GUI and see only a **black or blue screen** with no desktop icon
 
 Then run `StartUbuntuGUI` again.
 
-3. **The Ultimate Fix:** > [!IMPORTANT]
+3. **The Ultimate Fix:**
+> [!IMPORTANT]
 > **Note from the Creator:** I personally faced this issue many times. If the steps above don't work, simply **restart your Windows machine**. This clears the Virtual Machine Platform's memory and fixes the blank screen 100% of the time.
