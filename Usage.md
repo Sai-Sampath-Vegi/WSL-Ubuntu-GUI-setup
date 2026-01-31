@@ -10,7 +10,7 @@ You no longer need to run long commands. Simply open your Ubuntu terminal and ty
 
 ```bash
 
-StartUbuntuGUI
+  StartUbuntuGUI
 
 ```
 
@@ -26,12 +26,14 @@ When you are finished working, it is important to shut down the session to free 
 
 ```bash
 
-StopUbuntuGUI
+  StopUbuntuGUI
 
 ```
 
 **What happens:** 1. All GUI-related processes are safely terminated.
 2. The XRDP service is stopped to save system resources.
+
+---
 
 ### 🛠️ Troubleshooting the "Blank Screen"
 
@@ -43,7 +45,7 @@ If you open the GUI and see only a **black or blue screen** with no desktop icon
 
 ```bash
 
-StopUbuntuGUI && StartUbuntuGUI
+  StopUbuntuGUI && StartUbuntuGUI
 
 ```
 
@@ -53,11 +55,12 @@ StopUbuntuGUI && StartUbuntuGUI
 
 ```bash
 
-sudo pkill -u $USER xrdp
-sudo pkill -u $USER Xvnc
+  sudo pkill -u $USER xrdp
+  sudo pkill -u $USER Xvnc
 
 ```
 
 Then run `StartUbuntuGUI` again.
+
 3. **The Ultimate Fix:** > [!IMPORTANT]
 > **Note from the Creator:** I personally faced this issue many times. If the steps above don't work, simply **restart your Windows machine**. This clears the Virtual Machine Platform's memory and fixes the blank screen 100% of the time.
