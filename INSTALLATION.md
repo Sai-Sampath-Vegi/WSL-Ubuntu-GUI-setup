@@ -13,7 +13,7 @@ Run this command in your open PowerShell window to download the latest Ubuntu di
 
 ```powershell
 
-wsl --install -d Ubuntu
+  wsl --install -d Ubuntu
 
 ```
 
@@ -23,7 +23,7 @@ Run this command to enter the Ubuntu environment.
 
 ```powershell
 
-ubuntu
+  ubuntu
 
 ```
 
@@ -44,12 +44,12 @@ Run this first to block Snap and prioritize Apt.
 
 ```bash
 
-# Create a policy file to prioritize apt
-sudo tee /etc/apt/preferences.d/nosnap.pref << 'EOF'
-Package: snapd
-Pin: release a=*
-Pin-Priority: -10
-EOF
+  # Create a policy file to prioritize apt
+  sudo tee /etc/apt/preferences.d/nosnap.pref << 'EOF'
+  Package: snapd
+  Pin: release a=*
+  Pin-Priority: -10
+  EOF
 
 ```
 
@@ -61,22 +61,22 @@ Now that the system is optimized, we will install the actual Graphical User Inte
 
 ```bash
 
-# Update the system
-sudo apt update && sudo apt upgrade -y
+  # Update the system
+  sudo apt update && sudo apt upgrade -y
 
 ```
 
 ```bash
 
-# Install the Native Ubuntu Desktop Environment
-sudo apt install ubuntu-desktop-minimal xrdp -y
+  # Install the Native Ubuntu Desktop Environment
+  sudo apt install ubuntu-desktop-minimal xrdp -y
 
 ```
 
 ```bash
 
-# Configure the GUI to use GNOME
-echo "gnome-session" > ~/.xsession
+  # Configure the GUI to use GNOME
+  echo "gnome-session" > ~/.xsession
 
 ```
 
@@ -88,12 +88,12 @@ We will now download the scripts that handle the "One-Click" startup and cleanup
 
 ```bash
 
-# Download the Start and Stop scripts
-curl -L https://raw.githubusercontent.com/Sai-Sampath-Vegi/WSL-Ubuntu-GUI-setup/main/StartUbuntuGUI.sh > ~/StartUbuntuGUI.sh
-curl -L https://raw.githubusercontent.com/Sai-Sampath-Vegi/WSL-Ubuntu-GUI-setup/main/StopUbuntuGUI.sh > ~/StopUbuntuGUI.sh
-
-# Grant execution permissions
-chmod +x ~/StartUbuntuGUI.sh ~/StopUbuntuGUI.sh
+  # Download the Start and Stop scripts
+  curl -L https://raw.githubusercontent.com/Sai-Sampath-Vegi/WSL-Ubuntu-GUI-setup/main/StartUbuntuGUI.sh > ~/StartUbuntuGUI.sh
+  curl -L https://raw.githubusercontent.com/Sai-Sampath-Vegi/WSL-Ubuntu-GUI-setup/main/StopUbuntuGUI.sh > ~/StopUbuntuGUI.sh
+  
+  # Grant execution permissions
+  chmod +x ~/StartUbuntuGUI.sh ~/StopUbuntuGUI.sh
 
 ```
 
@@ -105,9 +105,9 @@ To make launching the GUI easy, we will create shortcuts that match the filename
 
 ```bash
 
-echo "alias StartUbuntuGUI='source ~/StartUbuntuGUI.sh'" >> ~/.bashrc
-echo "alias StopUbuntuGUI='source ~/StopUbuntuGUI.sh'" >> ~/.bashrc
-source ~/.bashrc
+  echo "alias StartUbuntuGUI='source ~/StartUbuntuGUI.sh'" >> ~/.bashrc
+  echo "alias StopUbuntuGUI='source ~/StopUbuntuGUI.sh'" >> ~/.bashrc
+  source ~/.bashrc
 
 ```
 
@@ -140,3 +140,35 @@ Now that everything is set up, you don't need to look for a specific app. You ca
 2. Type `StartUbuntuGUI` (The alias you created!).
 3. Work in the GUI.
 4. Type `StopUbuntuGUI` when finished to save RAM.
+
+---
+
+### 🛠️ Troubleshooting the "Blank Screen"
+
+If you open the GUI and see only a **black or blue screen** with no desktop icons, don't worry—this is a common WSL sync issue that I also encountered frequently during the development of this setup.
+
+**Try these steps in order:**
+
+1. **The Quick Reset:** Close the Remote Desktop window, go back to your terminal, and run:
+
+```bash
+
+  StopUbuntuGUI && StartUbuntuGUI
+
+```
+
+*This kills any "zombie" processes and starts a fresh session.*
+
+2. **The "Kill All" Method:** If the script doesn't fix it, manually clear the XRDP cache by running:
+
+```bash
+
+  sudo pkill -u $USER xrdp
+  sudo pkill -u $USER Xvnc
+
+```
+
+Then run `StartUbuntuGUI` again.
+
+3. **The Ultimate Fix:** > [!IMPORTANT]
+> **Note from the Creator:** I personally faced this issue many times. If the steps above don't work, simply **restart your Windows machine**. This clears the Virtual Machine Platform's memory and fixes the blank screen 100% of the time.
