@@ -9,9 +9,7 @@ Now that you have completed the installation, use this guide as a quick referenc
 You no longer need to run long commands. Simply open your Ubuntu terminal and type the alias we created:
 
 ```bash
-
 StartUbuntuGUI
-
 ```
 
 **What happens:** 1. The script clears any old "zombie" sessions to prevent the blank screen bug.
@@ -25,9 +23,7 @@ StartUbuntuGUI
 When you are finished working, it is important to shut down the session to free up your computer's RAM.
 
 ```bash
-
 StopUbuntuGUI
-
 ```
 
 **What happens:** 1. All GUI-related processes are safely terminated.
@@ -55,9 +51,7 @@ If you open the GUI and see only a **black or blue screen** with no desktop icon
 1. **The Quick Reset:** Close the Remote Desktop window, go back to your terminal, and run:
 
 ```bash
-
-  StopUbuntuGUI && StartUbuntuGUI
-
+StopUbuntuGUI && StartUbuntuGUI
 ```
 
 *This kills any "zombie" processes and starts a fresh session.*
@@ -65,10 +59,8 @@ If you open the GUI and see only a **black or blue screen** with no desktop icon
 2. **The "Kill All" Method:** If the script doesn't fix it, manually clear the XRDP cache by running:
 
 ```bash
-
-  sudo pkill -u $USER xrdp
-  sudo pkill -u $USER Xvnc
-
+sudo pkill -u $USER xrdp
+sudo pkill -u $USER Xvnc
 ```
 
 Then run `StartUbuntuGUI` again.
