@@ -68,3 +68,29 @@ Then run `StartUbuntuGUI` again.
 3. **The Ultimate Fix:**
 > [!IMPORTANT]
 > **Note from the Creator:** I personally faced this issue many times. If the steps above don't work, simply **restart your Windows machine**. This clears the Virtual Machine Platform's memory and fixes the blank screen 100% of the time.
+
+---
+
+### 🛠️ GUI Troubleshooting & Fixes
+
+If your Ubuntu Desktop fails to launch correctly, use the following solutions:
+
+1. **Instant Remote Desktop Crash**
+ * **Symptom:** The Remote Desktop window opens, you enter your credentials, click "OK," and the app immediately closes.
+ * **Cause:** This is usually due to a missing System Machine ID or a D-Bus communication failure.
+ * **The Fix:** Run these commands in your Ubuntu terminal:
+
+```bash
+sudo systemd-machine-id-setup
+sudo dbus-uuidgen --ensure
+```
+
+2. **White Screen / "Something has gone wrong"**
+ * **Symptom:** You log in successfully, but instead of the desktop, you see a white screen with a "sad computer" icon.
+ * **Cause:** The GNOME session is failing to initialize or is trying to launch an incompatible session type.
+ * **The Fix:** Force the session to use GNOME by running:
+
+```bash
+echo "gnome-session" > ~/.xsession
+sudo service xrdp restart
+```
