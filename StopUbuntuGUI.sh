@@ -5,4 +5,4 @@ else
 	echo Ubuntu GUI is not Running
 fi
 
-sudo pkill -u ubuntu
+sudo pkill -u $USER
