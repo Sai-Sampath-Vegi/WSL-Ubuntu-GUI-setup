@@ -1,4 +1,3 @@
-USER_NAME=$(whoami)
 XRDP_PORT=$(grep -Po '(?<=^port=)\d+' /etc/xrdp/xrdp.ini)
 
 launch_rdp() {
@@ -9,7 +8,7 @@ get_xrdp_status() {
 	systemctl is-active --quiet xrdp
 }
 
-sudo pkill -u $USER_NAME
+sudo pkill -u $USER
 
 if ! get_xrdp_status; then
 
